@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace MVCNewsPortal.Migrations
+namespace DataLayer.Migrations.DB
 {
     public partial class News : Migration
     {

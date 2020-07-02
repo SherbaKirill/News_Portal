@@ -1,11 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using MVCNewsPortal.Models;
+using DataLayer.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace MVCNewsPortal.Data
+namespace DataLayer
 {
     public class DBContext : DbContext
     {

@@ -1,19 +1,13 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.UI;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.EntityFrameworkCore;
-using MVCNewsPortal.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using MVCNewsPortal.interfaces;
-using MVCNewsPortal.Repository;
+using DataLayer;
+using DataLayer.Models;
+using DataLayer.Repository;
 
 namespace MVCNewsPortal
 {
@@ -36,11 +30,11 @@ namespace MVCNewsPortal
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             services.AddDbContext<DBContext>(options =>
             options.UseSqlServer(
-                "Server=(localdb)\\MSSQLLocalDB;Database=NewsDatabase;Trusted_Connection=True;MultipleActiveResultSets=true"));
+                Configuration.GetConnectionString("DefaultConnection")));
             services.AddControllersWithViews();
             services.AddRazorPages();
-            services.AddTransient<IAllNews, NewsRepository>();
-            services.AddTransient<INewsCategory, CategoryRepository>();
+            services.AddTransient<IRepository<News>, NewsRepository>();
+            services.AddTransient<IRepository<Category>, CategoryRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -73,10 +67,10 @@ namespace MVCNewsPortal
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=Home}/{action=Index}");
                 endpoints.MapControllerRoute(
                     name: "categoryFilter",
-                    pattern: "Home/List/{category?}", defaults: new { Controller = "Home", action = "List" });
+                    pattern: "Home/List/{category?}", defaults: new { Controller = "Home", action = "Index" });
                 endpoints.MapRazorPages();
             });
         }

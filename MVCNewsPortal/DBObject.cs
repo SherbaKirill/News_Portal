@@ -1,12 +1,8 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using DataLayer;
+using DataLayer.Models;
 using Microsoft.EntityFrameworkCore.Internal;
-using Microsoft.Extensions.DependencyInjection;
-using MVCNewsPortal.Data;
-using MVCNewsPortal.Models;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace MVCNewsPortal
 {

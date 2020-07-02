@@ -1,9 +1,9 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace MVCNewsPortal.Migrations.ApplicationDb
+namespace DataLayer.Migrations
 {
-    public partial class Users : Migration
+    public partial class User : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

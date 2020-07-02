@@ -3,9 +3,8 @@ using System.Collections.Generic;
 using System.Text;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using MVCNewsPortal.Models;
 
-namespace MVCNewsPortal.Data
+namespace DataLayer
 {
     public class ApplicationDbContext : IdentityDbContext
     {

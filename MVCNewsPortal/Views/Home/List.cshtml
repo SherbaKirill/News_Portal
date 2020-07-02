@@ -1,16 +1,16 @@
 ﻿<h2> @Model.currCategory </h2>
 <div class="row mt-4 mb-2">
     @{
-        if(Model.AllNews!=null)
-        foreach (var news in Model.AllNews)
-        {
-            <div class="col-lg-4">
-                <h2>@news.Name</h2>
-                <img class="img-thumbnail" src="@news.Img" alt="@news.Name"/>
-                <p>@news.Description</p>
-                <p><a class="btn-dark" href="#">Подробнее</a> </p>
+        if (Model.AllNews != null)
+            foreach (var news in Model.AllNews)
+            {
+                <div class="col-lg-4">
+                    <h2>@news.Name</h2>
+                    <img class="img-thumbnail" src="@news.Img" alt="@news.Name" />
+                    <p>@news.Description</p>
+                    <p><a class="btn-dark" href="/News/NewsId/@news.Id">Подробнее</a> </p>
 
-            </div>
-        }
+                </div>
+            }
     }
 </div>
