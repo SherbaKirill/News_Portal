@@ -1426,6 +1426,19 @@
           "lib/netstandard1.3/System.Xml.XmlSerializer.dll": {}
         }
       },
+      "BusinessLayer/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v3.1",
+        "dependencies": {
+          "DataLayer": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/BusinessLayer.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/BusinessLayer.dll": {}
+        }
+      },
       "DataLayer/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v3.1",
@@ -5363,6 +5376,11 @@
         "system.xml.xmlserializer.nuspec"
       ]
     },
+    "BusinessLayer/1.0.0": {
+      "type": "project",
+      "path": "../BusinessLayer/BusinessLayer.csproj",
+      "msbuildProject": "../BusinessLayer/BusinessLayer.csproj"
+    },
     "DataLayer/1.0.0": {
       "type": "project",
       "path": "../DataLayer/DataLayer.csproj",
@@ -5371,6 +5389,7 @@
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v3.1": [
+      "BusinessLayer >= 1.0.0",
       "DataLayer >= 1.0.0",
       "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore >= 3.1.5",
       "Microsoft.AspNetCore.Identity.EntityFrameworkCore >= 3.1.5",
@@ -5412,6 +5431,9 @@
       "frameworks": {
         "netcoreapp3.1": {
           "projectReferences": {
+            "C:\\Users\\sherb\\Documents\\GitHub\\News_Portal\\BusinessLayer\\BusinessLayer.csproj": {
+              "projectPath": "C:\\Users\\sherb\\Documents\\GitHub\\News_Portal\\BusinessLayer\\BusinessLayer.csproj"
+            },
             "C:\\Users\\sherb\\Documents\\GitHub\\News_Portal\\DataLayer\\DataLayer.csproj": {
               "projectPath": "C:\\Users\\sherb\\Documents\\GitHub\\News_Portal\\DataLayer\\DataLayer.csproj"
             }

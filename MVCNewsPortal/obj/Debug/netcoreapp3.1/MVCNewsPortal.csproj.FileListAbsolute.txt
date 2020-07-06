@@ -89,3 +89,8 @@ C:\Users\sherb\Documents\GitHub\News_Portal\MVCNewsPortal\obj\Debug\netcoreapp3.
 C:\Users\sherb\Documents\GitHub\News_Portal\MVCNewsPortal\bin\Debug\netcoreapp3.1\DataLayer.dll
 C:\Users\sherb\Documents\GitHub\News_Portal\MVCNewsPortal\bin\Debug\netcoreapp3.1\DataLayer.pdb
 C:\Users\sherb\Documents\GitHub\News_Portal\MVCNewsPortal\obj\Debug\netcoreapp3.1\Razor\Views\Home\List.cshtml.g.cs
+C:\Users\sherb\Documents\GitHub\News_Portal\MVCNewsPortal\bin\Debug\netcoreapp3.1\BusinessLayer.dll
+C:\Users\sherb\Documents\GitHub\News_Portal\MVCNewsPortal\bin\Debug\netcoreapp3.1\BusinessLayer.pdb
+C:\Users\sherb\Documents\GitHub\News_Portal\MVCNewsPortal\obj\Debug\netcoreapp3.1\Razor\Views\Home\Create.cshtml.g.cs
+C:\Users\sherb\Documents\GitHub\News_Portal\MVCNewsPortal\obj\Debug\netcoreapp3.1\Razor\Views\Home\Update.cshtml.g.cs
+C:\Users\sherb\Documents\GitHub\News_Portal\MVCNewsPortal\obj\Debug\netcoreapp3.1\Razor\Views\Home\Delete.cshtml.g.cs

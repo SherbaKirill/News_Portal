@@ -8,6 +8,7 @@ using Microsoft.Extensions.Hosting;
 using DataLayer;
 using DataLayer.Models;
 using DataLayer.Repository;
+using BusinessLayer;
 
 namespace MVCNewsPortal
 {
@@ -35,6 +36,8 @@ namespace MVCNewsPortal
             services.AddRazorPages();
             services.AddTransient<IRepository<News>, NewsRepository>();
             services.AddTransient<IRepository<Category>, CategoryRepository>();
+            services.AddTransient<IViewCreator, ViewCreator>();
+            services.AddTransient<ICUDNews, CUDNews>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

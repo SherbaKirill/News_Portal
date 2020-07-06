@@ -1,13 +1,12 @@
 ﻿using DataLayer.Models;
 using System.Linq;
 
-namespace MVCNewsPortal.Models
+namespace BusinessLayer
 {
     public class NewsListViewModel
     {
         public IQueryable<News> AllNews { get; set; }
-
-        public string currCategory { get; set; }
+        public string currCategory { get; set; } = "Все новости";
 
     }
 }

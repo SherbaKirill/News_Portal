@@ -1,67 +1,75 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
+﻿using System.Diagnostics;
 using System.Threading.Tasks;
-using DataLayer;
-using DataLayer.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing;
-using Microsoft.EntityFrameworkCore.Internal;
 using Microsoft.Extensions.Logging;
 using MVCNewsPortal.Models;
+using BusinessLayer;
 
 namespace MVCNewsPortal.Controllers
 {
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-        private readonly IRepository<News> _allNews;
-        private readonly IRepository<Category> _newsCategory;
-        public HomeController(ILogger<HomeController> logger, IRepository<News> allNews, IRepository<Category> newsCategory)
+        private readonly IViewCreator _viewCreator;
+        private readonly ICUDNews _CUDNews;
+        public HomeController(ILogger<HomeController> logger,IViewCreator viewCreator,ICUDNews cUDNews)
         {
             _logger = logger;
-            _allNews = allNews;
-            _newsCategory = newsCategory;
+            this._viewCreator = viewCreator;
+            _CUDNews = cUDNews;
         }
-        public ViewResult Index()
+        public async Task<ViewResult> Index()
         {
-            IQueryable<News> news = _allNews.ReadAll().Result;
-            string currCategory = "Все новости";
-            var obj = new NewsListViewModel
-            {
-                AllNews = news,
-                currCategory = currCategory
-            };
-            return View(obj);
+            return View(await Task.Run(()=>_viewCreator.GetNews()));
         }
 
         [Route("News/List/{category}")]
-        public ViewResult List(string category)
+        public async Task<ViewResult> List(string category)
         {
-            string _category = category;
-            IQueryable<News> news = null;
-            string currCategory = "";
-            if (_newsCategory.ReadAll().Result.Any(x => x.CategoryName == _category))
-            {
-                news = _allNews.ReadAll().Result.Where(i => i.Category.CategoryName == _category).OrderByDescending(i => i.Id);
-                currCategory = _newsCategory.ReadAll().Result.Where(x => x.CategoryName == _category).First().DisplayName;
-            }
-            var obj = new NewsListViewModel
-            {
-                AllNews = news,
-                currCategory = currCategory
-            };
-            return View(obj);
+            return View(await Task.Run(()=>_viewCreator.CategoryNews(category)));
         }
         [Route("News/NewsId")]
         [Route("News/NewsId/{Id}")]
-        public ViewResult NewsId(int Id=1)=> View(_allNews.Read(Id).Result);
+        public async Task<ViewResult> NewsId(int Id=1)=> View(await Task.Run(()=>_viewCreator.NewsId(Id)));
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+
+        [HttpGet]
+        public IActionResult Create()
+        {
+            return View();
+        }
+        [HttpPost]
+        public IActionResult Create(string Name,string Description,string Contents,string Img,string Category="Все новости")
+        {
+            _CUDNews.Create(Name, Description, Contents, Img, Category);
+            return RedirectToAction("Index");
+        }
+        [HttpGet]
+        public IActionResult Update()
+        {
+            return View();
+        }
+        [HttpPost]
+        public IActionResult Update(int Id,string Name, string Description, string Contents, string Img, string Category = "Все новости")
+        {
+            _CUDNews.Update(Id,Name, Description, Contents, Img, Category);
+            return RedirectToAction("Index");
+        }
+        public IActionResult Delete()
+        {
+            return View();
+        }
+        [HttpPost]
+        public IActionResult Delete(int Id)
+        {
+            _CUDNews.Delete(Id);
+            return RedirectToAction("Index");
         }
     }
 }

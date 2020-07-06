@@ -48,9 +48,13 @@ namespace DataLayer.Repository
         public async Task<News> Update(News model)
         {
             News news = await dBContext.News.FindAsync(model.Id);
-            dBContext.News.Remove(news);
-            dBContext.News.Add(model);
-            await dBContext.SaveChangesAsync();
+            if (news == null)
+                await Create(model);
+            else
+            {
+                dBContext.Entry(model).State = EntityState.Modified;
+                await dBContext.SaveChangesAsync();
+            }
             return model;
         }
     }

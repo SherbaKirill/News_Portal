@@ -23,6 +23,17 @@
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Все новости</a>
                         </li>
                     </ul>
+
+                </div>
+                <div class="dropdown open">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        News
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" href="/Home/Create">Create</a>
+                        <a class="dropdown-item" href="/Home/Update">Update</a>
+                        <a class="dropdown-item" href="/Home/Delete">Delete</a>
+                    </div>
                 </div>
         </nav>
     </header>
