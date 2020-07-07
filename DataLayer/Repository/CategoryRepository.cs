@@ -21,8 +21,7 @@ namespace DataLayer.Repository
         }
         public async Task<IQueryable<Category>> ReadAll()
         {
-            IQueryable<Category> categories = dBContext.Category;
-            return categories;
+            return dBContext.Category;
         }
         public async Task<Category> Create(Category model)
         {
@@ -42,10 +41,9 @@ namespace DataLayer.Repository
         public async Task<Category> Update(Category model)
         {
             Category category = await dBContext.Category.FindAsync(model.Id);
-            dBContext.Category.Remove(category);
-            dBContext.Category.Add(model);
+            category.Update(model);
             await dBContext.SaveChangesAsync();
-            return model;
+            return category;
         }
     }
 }

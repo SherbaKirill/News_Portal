@@ -18,5 +18,12 @@ namespace DataLayer.Models
         public string Img { get; set; }
 
         public virtual Category Category { get; set; }
+        public void Update(News obj)
+        {
+            Name = obj.Name;
+            Description = obj.Description;
+            Content = obj.Content;
+            Img = obj.Img;
+        }
     }
 }

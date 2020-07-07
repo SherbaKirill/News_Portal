@@ -13,5 +13,11 @@ namespace DataLayer.Models
         public string CategoryName { get; set; }
 
         public List<News> News { get; set; }
+
+        public void Update(Category obj)
+        {
+            DisplayName = obj.DisplayName;
+            CategoryName = obj.CategoryName;
+        }
     }
 }

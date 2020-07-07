@@ -1,27 +1,28 @@
-﻿<form method="post">
+﻿@model MVCNewsPortal.Models.NewsViewModel
+<form method="post">
     <p>
         <label>Id:</label><br />
-        <input type="text" name=Id /><br /><br />
+        <label>@Model.Id</label><br />
     </p>
     <p>
         <label>Name:</label><br />
-        <input type="text" name=Name /><br /><br />
+        @Html.TextArea("Name", Model.Name)
     </p>
     <p>
         <label>Description:</label><br />
-        <textarea name=Description></textarea>
+        @Html.TextArea("Description", Model.Description)
     </p>
     <p>
         <label>Content:</label><br />
-        <textarea name=Content></textarea>
+        @Html.TextArea("Content", Model.Content)
     </p>
     <p>
         <label>Img:</label><br />
-        <input type="text" name=Img /><br /><br />
+        @Html.TextArea("Img", Model.Img)
     </p>
     <p>
         <label>Category:</label><br />
-        <input type="text" name=Category /><br /><br />
+        <label>@Model.Category.CategoryName</label><br />
     </p>
     <input type="submit" value="Отправить" />
 </form>

@@ -1,8 +1,9 @@
-﻿<h2> @Model.currCategory </h2>
+﻿@model IEnumerable<MVCNewsPortal.Models.NewsViewModel>
+<h2> @Model.First().Category.DisplayName </h2>
 <div class="row mt-4 mb-2">
     @{
-        if (Model.AllNews != null)
-            foreach (var news in Model.AllNews)
+        if (Model != null)
+            foreach (var news in Model)
             {
                 <div class="col-lg-4">
                     <h2>@news.Name</h2>

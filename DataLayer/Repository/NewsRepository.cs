@@ -18,44 +18,39 @@ namespace DataLayer.Repository
         }
         public async Task<News> Read(int id)
         {
-            News news = await dBContext.News.FindAsync(id);
+            News news = dBContext.News.Include(c=>c.Category).Where(c=>c.Id==id).First();
             if (news == null)
                 return new News();
             return news;
         }
         public async Task<IQueryable<News>> ReadAll()
         {
-            IQueryable<News> news = dBContext.News;
-            return news;
+            return dBContext.News.Include(c=>c.Category);
         }
         public async Task<News> Create(News model)
         {
-            if (dBContext.Category.AnyAsync(c => c.CategoryName == model.Category.CategoryName).Result)
+            if (!dBContext.Category.AnyAsync(c => c.CategoryName == model.Category.CategoryName).Result)
                 dBContext.Category.Add(model.Category);
+            model.Category = dBContext.Category.Where(c => c.CategoryName == model.Category.CategoryName).First();
             dBContext.News.Add(model);
             await dBContext.SaveChangesAsync();
-            return model;
+            return dBContext.News.Skip(dBContext.News.Count() - 1).Take(1).FirstOrDefault();
         }
         public async Task<News> Delete(int id)
         {
-            News news = await dBContext.News.FindAsync(id);
+            News news = dBContext.News.Find(id);
             if (news == null)
                 return new News();
             dBContext.News.Remove(news);
-            await dBContext.SaveChangesAsync();
+            dBContext.SaveChanges();
             return news;
         }
         public async Task<News> Update(News model)
         {
-            News news = await dBContext.News.FindAsync(model.Id);
-            if (news == null)
-                await Create(model);
-            else
-            {
-                dBContext.Entry(model).State = EntityState.Modified;
-                await dBContext.SaveChangesAsync();
-            }
-            return model;
+            News news = dBContext.News.Where(c => c.Id == model.Id).First();
+            news.Update(model);
+            dBContext.SaveChanges();
+            return dBContext.News.Where(c=>c.Id==news.Id).First();
         }
     }
 }
