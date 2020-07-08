@@ -10,23 +10,21 @@ using System.Text;
 
 namespace BusinessLayer.Service
 {
-    public class NewsService:INewsService
+    public class NewsService:IManageNewsService
     {
         private readonly IRepository<News> _allNews;
-        private readonly IRepository<Category> _allCategory;
-        public NewsService(IRepository<News> repository,IRepository<Category> category)
+        public NewsService(IRepository<News> repository)
         {
             _allNews = repository;
-            _allCategory = category;
         }
-        public NewsDTO Create(NewsDTO news)
+        public NewsDomain Create(NewsDomain news)
         {
             if (news == null)
                 throw new Exception("отсутствует");
-            return news.ToNewsDTO(_allNews.Create(news.ToNews()).Result);
+            return news.ToNewsDomain(_allNews.Create(news.ToNews()).Result);
 
         }
-        public NewsDTO Update(NewsDTO news)
+        public NewsDomain Update(NewsDomain news)
         {
             _allNews.Update(news.ToNews());
             return news;

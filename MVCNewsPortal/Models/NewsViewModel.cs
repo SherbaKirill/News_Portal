@@ -20,11 +20,11 @@ namespace MVCNewsPortal.Models
 
         public CategoryViewModel Category { get; set; } = new CategoryViewModel { CategoryName = "All", DisplayName = "Все новости" };
 
-        public NewsDTO ToNewsDTO()
+        public NewsDomain ToNewsDomain()
         {
-            return new NewsDTO { Category = Category.ToCategoryDTO(), Id = Id, Name = Name, Img = Img, Content = Content, Description = Description };
+            return new NewsDomain { Category = Category.ToCategoryDomain(), Id = Id, Name = Name, Img = Img, Content = Content, Description = Description };
         }
-        public NewsViewModel ToNewsViewModel(NewsDTO obj)
+        public NewsViewModel ToNewsViewModel(NewsDomain obj)
         {
             return new NewsViewModel { Category = new CategoryViewModel().ToCategoryViewModel(obj.Category), Id = obj.Id, Name = obj.Name, Img = obj.Img, Content = obj.Content, Description = obj.Description };
         }

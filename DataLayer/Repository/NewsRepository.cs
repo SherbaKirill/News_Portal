@@ -21,6 +21,7 @@ namespace DataLayer.Repository
             News news = dBContext.News.Include(c=>c.Category).Where(c=>c.Id==id).First();
             if (news == null)
                 return new News();
+
             return news;
         }
         public async Task<IQueryable<News>> ReadAll()
@@ -29,8 +30,9 @@ namespace DataLayer.Repository
         }
         public async Task<News> Create(News model)
         {
-            if (!dBContext.Category.AnyAsync(c => c.CategoryName == model.Category.CategoryName).Result)
+            if (!(await dBContext.Category.AnyAsync(c => c.CategoryName == model.Category.CategoryName)))
                 dBContext.Category.Add(model.Category);
+
             model.Category = dBContext.Category.Where(c => c.CategoryName == model.Category.CategoryName).First();
             dBContext.News.Add(model);
             await dBContext.SaveChangesAsync();
@@ -41,6 +43,7 @@ namespace DataLayer.Repository
             News news = dBContext.News.Find(id);
             if (news == null)
                 return new News();
+
             dBContext.News.Remove(news);
             dBContext.SaveChanges();
             return news;

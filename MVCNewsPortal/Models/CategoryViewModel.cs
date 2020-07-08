@@ -13,11 +13,11 @@ namespace MVCNewsPortal.Models
 
         public string CategoryName { get; set; }
 
-        public CategoryDTO ToCategoryDTO()
+        public CategoryDomain ToCategoryDomain()
         {
-            return new CategoryDTO { DisplayName = DisplayName, CategoryName = CategoryName };
+            return new CategoryDomain { DisplayName = DisplayName, CategoryName = CategoryName };
         }
-        public CategoryViewModel ToCategoryViewModel(CategoryDTO obj)
+        public CategoryViewModel ToCategoryViewModel(CategoryDomain obj)
         {
             return new CategoryViewModel { CategoryName = obj.CategoryName, DisplayName = obj.DisplayName };
         }

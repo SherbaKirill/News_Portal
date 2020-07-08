@@ -7,6 +7,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using DataLayer;
 using DataLayer.Models;
+using BusinessLayer.Interfaces;
+using BusinessLayer.Service;
 using DataLayer.Repository;
 using BusinessLayer;
 
@@ -36,8 +38,8 @@ namespace MVCNewsPortal
             services.AddRazorPages();
             services.AddTransient<IRepository<News>, NewsRepository>();
             services.AddTransient<IRepository<Category>, CategoryRepository>();
-            services.AddTransient<IViewCreator, ViewCreator>();
-            services.AddTransient<ICUDNews, CUDNews>();
+            services.AddTransient<ISearchNewsService, SearchNewsService>();
+            services.AddTransient<IManageNewsService, NewsService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -16,9 +16,9 @@ namespace MVCNewsPortal.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-        private readonly IReader _reader;
-        private readonly INewsService _newsService;
-        public HomeController(ILogger<HomeController> logger,IReader reader,INewsService newsService)
+        private readonly ISearchNewsService _reader;
+        private readonly IManageNewsService _newsService;
+        public HomeController(ILogger<HomeController> logger,ISearchNewsService reader,IManageNewsService newsService)
         {
             _logger = logger;
             this._reader = reader;
@@ -26,21 +26,24 @@ namespace MVCNewsPortal.Controllers
         }
         public async Task<ViewResult> Index()
         {
-            var mapper = new MapperConfiguration(cfg => cfg.CreateMap<NewsDTO, NewsViewModel>()
+            var mapper = new MapperConfiguration(cfg => cfg.CreateMap<NewsDomain, NewsViewModel>()
             .ForPath(c => c.Category.CategoryName, x => x.MapFrom(d => d.Category.CategoryName))
             .ForPath(c => c.Category.DisplayName, x => x.MapFrom(d => d.Category.DisplayName))
             ).CreateMapper();
-            return View(mapper.Map<IEnumerable<NewsDTO>, List<NewsViewModel>>(await Task.Run(() => _reader.GetNews())));
+
+            return View(mapper.Map<IEnumerable<NewsDomain>, List<NewsViewModel>>(await Task.Run(() => _reader.GetNews())));
         }
 
         [Route("News/List/{category}")]
         public async Task<IActionResult> List(string category)
         {
-            var mapper = new MapperConfiguration(cfg => cfg.CreateMap<NewsDTO, NewsViewModel>()
-            .ForPath(c => c.Category.CategoryName, x => x.MapFrom(d => d.Category.CategoryName))
-            .ForPath(c => c.Category.DisplayName, x => x.MapFrom(d => d.Category.DisplayName))
+            var mapper = new MapperConfiguration(
+                cfg => cfg.CreateMap<NewsDomain, NewsViewModel>()
+                .ForPath( c => c.Category.CategoryName, x => x.MapFrom(d => d.Category.CategoryName))
+                .ForPath( c => c.Category.DisplayName, x => x.MapFrom(d => d.Category.DisplayName))
             ).CreateMapper();
-            return View(mapper.Map<IEnumerable<NewsDTO>, List<NewsViewModel>>(await Task.Run(() => _reader.GetNewsOfCategory(category))));
+
+            return View(mapper.Map<IEnumerable<NewsDomain>, List<NewsViewModel>>(await Task.Run(() => _reader.GetNewsByCategory(category))));
         }
         [Route("News/NewsId")]
         [Route("News/NewsId/{Id}")]
@@ -48,8 +51,8 @@ namespace MVCNewsPortal.Controllers
         {
             try
             {
-                NewsDTO newsDTO =await Task.Run(()=>_reader.NewsId(Id));
-                return View(new NewsViewModel().ToNewsViewModel(newsDTO));
+                var newsDomain = await Task.Run(()=>_reader.GetNewsById(Id));
+                return View(new NewsViewModel().ToNewsViewModel(newsDomain));
             }
             catch (Exception ex)
             {
@@ -72,32 +75,33 @@ namespace MVCNewsPortal.Controllers
         [HttpPost]
         public IActionResult Create(NewsViewModel news)
         {
-            NewsDTO newsDTO = _newsService.Create(news.ToNewsDTO());
-            return RedirectToAction("NewsId", new { news.ToNewsViewModel(newsDTO).Id });
+            var newsDomain = _newsService.Create(news.ToNewsDomain());
+            return RedirectToAction("NewsId", new { news.ToNewsViewModel(newsDomain).Id });
         }
         [HttpGet]
         public IActionResult Update(int Id)
         {
-            NewsDTO newsDTO =_reader.NewsId(Id);
-            return View(new NewsViewModel().ToNewsViewModel(newsDTO));
+            var newsDomain = _reader.GetNewsById(Id);
+            return View(new NewsViewModel().ToNewsViewModel(newsDomain));
         }
         [HttpPost]
         public IActionResult Update(NewsViewModel news)
         {
-            NewsDTO newsDTO = _newsService.Update(news.ToNewsDTO());
-            news.ToNewsViewModel(newsDTO);
-            return RedirectToAction("NewsId", new { news.ToNewsViewModel(newsDTO).Id });
+            var newsDomain = _newsService.Update(news.ToNewsDomain());
+            news.ToNewsViewModel(newsDomain);
+            return RedirectToAction("NewsId", new { news.ToNewsViewModel(newsDomain).Id });
         }
         public IActionResult Delete(int Id)
         {
-            NewsDTO newsDTO = _reader.NewsId(Id);
-            return View(new NewsViewModel().ToNewsViewModel(newsDTO));
+            var newsDomain = _reader.GetNewsById(Id);
+            return View(new NewsViewModel().ToNewsViewModel(newsDomain));
         }
         [HttpPost]
         public IActionResult Delete(bool Enable,int Id)
         {
             if(Enable)
             _newsService.Delete(Id);
+
             return RedirectToAction("Index");
         }
     }
