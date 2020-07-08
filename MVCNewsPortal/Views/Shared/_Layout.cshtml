@@ -9,9 +9,8 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">MVCNewsPortal</a>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-sm-1">
+                <a class="navbar" asp-area="" asp-controller="Home" asp-action="Index">MVCNewsPortal</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -21,34 +20,30 @@
                     <partial name="_LoginPartial" />
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" href="/News/List">Новости</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Все новости</a>
                         </li>
                     </ul>
+
                 </div>
-            </div>
+                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Create">Create</a>                  
         </nav>
     </header>
-    <div class="container">
         <div class="row">
             <nav class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse" id="sidebarMenu">
                 <div class="sidebar-sticky pt-3">
                     <ul class="nav flex-column">
                         <li class="nav-item">
-                            <a class="nav-link active" href="/News/List/Sport">Спорт</a>
+                            <a class="nav-link active" href="/News/List/Sport" alt="Новости спорта">Спорт</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/News/List/Cinema">Киноиндустрия</a>                      
+                            <a class="nav-link" href="/News/List/Cinema" alt="Новости кино">Киноиндустрия</a>
                     </ul>
                 </div>
             </nav>
-            <main class="col-md-9 ml-sm-auto col lg-10 px-md-4" role="main">
+            <main class="col-md-10 ml-sm-auto col lg-10 px-md-4" role="main">
                 @RenderBody()
             </main>
-        </div>       
-    </div>
+        </div>
 
     <footer class="border-top footer text-muted">
         <div class="container">

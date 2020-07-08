@@ -65,7 +65,6 @@ C:\Users\sherb\Documents\GitHub\News_Portal\MVCNewsPortal\obj\Debug\netcoreapp3.
 C:\Users\sherb\Documents\GitHub\News_Portal\MVCNewsPortal\obj\Debug\netcoreapp3.1\MVCNewsPortal.TagHelpers.output.cache
 C:\Users\sherb\Documents\GitHub\News_Portal\MVCNewsPortal\obj\Debug\netcoreapp3.1\MVCNewsPortal.RazorCoreGenerate.cache
 C:\Users\sherb\Documents\GitHub\News_Portal\MVCNewsPortal\obj\Debug\netcoreapp3.1\Razor\Areas\Identity\Pages\_ViewStart.cshtml.g.cs
-C:\Users\sherb\Documents\GitHub\News_Portal\MVCNewsPortal\obj\Debug\netcoreapp3.1\Razor\Views\Home\Index.cshtml.g.cs
 C:\Users\sherb\Documents\GitHub\News_Portal\MVCNewsPortal\obj\Debug\netcoreapp3.1\Razor\Views\Shared\Error.cshtml.g.cs
 C:\Users\sherb\Documents\GitHub\News_Portal\MVCNewsPortal\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_Layout.cshtml.g.cs
 C:\Users\sherb\Documents\GitHub\News_Portal\MVCNewsPortal\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_LoginPartial.cshtml.g.cs
@@ -81,8 +80,17 @@ C:\Users\sherb\Documents\GitHub\News_Portal\MVCNewsPortal\obj\Debug\netcoreapp3.
 C:\Users\sherb\Documents\GitHub\News_Portal\MVCNewsPortal\obj\Debug\netcoreapp3.1\MVCNewsPortal.dll
 C:\Users\sherb\Documents\GitHub\News_Portal\MVCNewsPortal\obj\Debug\netcoreapp3.1\MVCNewsPortal.pdb
 C:\Users\sherb\Documents\GitHub\News_Portal\MVCNewsPortal\obj\Debug\netcoreapp3.1\MVCNewsPortal.genruntimeconfig.cache
-C:\Users\sherb\Documents\GitHub\News_Portal\MVCNewsPortal\obj\Debug\netcoreapp3.1\Razor\Views\Home\List.cshtml.g.cs
 C:\Users\sherb\Documents\GitHub\News_Portal\MVCNewsPortal\obj\Debug\netcoreapp3.1\MVCNewsPortal.csproj.CoreCompileInputs.cache
 C:\Users\sherb\Documents\GitHub\News_Portal\MVCNewsPortal\obj\Debug\netcoreapp3.1\MVCNewsPortal.MvcApplicationPartsAssemblyInfo.cs
 C:\Users\sherb\Documents\GitHub\News_Portal\MVCNewsPortal\obj\Debug\netcoreapp3.1\MVCNewsPortal.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\sherb\Documents\GitHub\News_Portal\MVCNewsPortal\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.Design.dll
+C:\Users\sherb\Documents\GitHub\News_Portal\MVCNewsPortal\obj\Debug\netcoreapp3.1\Razor\Views\Home\NewsId.cshtml.g.cs
+C:\Users\sherb\Documents\GitHub\News_Portal\MVCNewsPortal\obj\Debug\netcoreapp3.1\Razor\Views\Home\Index.cshtml.g.cs
+C:\Users\sherb\Documents\GitHub\News_Portal\MVCNewsPortal\bin\Debug\netcoreapp3.1\DataLayer.dll
+C:\Users\sherb\Documents\GitHub\News_Portal\MVCNewsPortal\bin\Debug\netcoreapp3.1\DataLayer.pdb
+C:\Users\sherb\Documents\GitHub\News_Portal\MVCNewsPortal\obj\Debug\netcoreapp3.1\Razor\Views\Home\List.cshtml.g.cs
+C:\Users\sherb\Documents\GitHub\News_Portal\MVCNewsPortal\bin\Debug\netcoreapp3.1\BusinessLayer.dll
+C:\Users\sherb\Documents\GitHub\News_Portal\MVCNewsPortal\bin\Debug\netcoreapp3.1\BusinessLayer.pdb
+C:\Users\sherb\Documents\GitHub\News_Portal\MVCNewsPortal\obj\Debug\netcoreapp3.1\Razor\Views\Home\Create.cshtml.g.cs
+C:\Users\sherb\Documents\GitHub\News_Portal\MVCNewsPortal\obj\Debug\netcoreapp3.1\Razor\Views\Home\Update.cshtml.g.cs
+C:\Users\sherb\Documents\GitHub\News_Portal\MVCNewsPortal\obj\Debug\netcoreapp3.1\Razor\Views\Home\Delete.cshtml.g.cs
