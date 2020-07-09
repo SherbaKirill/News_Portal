@@ -10,10 +10,10 @@ using System.Text;
 
 namespace BusinessLayer.Service
 {
-    public class NewsService:IManageNewsService
+    public class ManageNewsService:IManageNewsService
     {
         private readonly IRepository<News> _allNews;
-        public NewsService(IRepository<News> repository)
+        public ManageNewsService(IRepository<News> repository)
         {
             _allNews = repository;
         }

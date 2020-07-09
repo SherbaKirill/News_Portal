@@ -12,11 +12,11 @@ namespace BusinessLayer.Models
         public string CategoryName { get; set; }
         public Category ToCategory()
         {
-            return new Category { DisplayName = DisplayName, CategoryName = CategoryName };
+            return new Category { DisplayName = DisplayName, CategoryName = CategoryName, Id = Id };
         }
         public CategoryDomain ToCategoryDomain(Category obj)
         {
-            return new CategoryDomain { CategoryName = obj.CategoryName, DisplayName = obj.DisplayName };
+            return new CategoryDomain { CategoryName = obj.CategoryName, DisplayName = obj.DisplayName, Id=obj.Id};
         }
     }
 }

@@ -1,0 +1,8 @@
+﻿@model IEnumerable<MVCNewsPortal.Models.CategoryViewModel>
+
+        @{
+                foreach (var category in Model)
+                {
+                    <a asp-controller="News" asp-action="List" asp-route-category="@category.CategoryName">@category.DisplayName</a> <br />
+                }
+        }
