@@ -10,11 +10,13 @@ namespace DataLayer.Repository
 {
     public class NewsRepository : IRepository<News>
     {
+        private readonly IRepository<Category> repository;
         private readonly DBContext dBContext;
 
-        public NewsRepository(DBContext dBContext) 
+        public NewsRepository(DBContext dBContext,IRepository<Category> repository) 
         {
             this.dBContext = dBContext;
+            this.repository = repository;
         }
         public async Task<News> Read(int id)
         {
@@ -30,13 +32,10 @@ namespace DataLayer.Repository
         }
         public async Task<News> Create(News model)
         {
-            if (!(await dBContext.Category.AnyAsync(c => c.CategoryName == model.Category.CategoryName)))
-                dBContext.Category.Add(model.Category);
-
             model.Category = dBContext.Category.Where(c => c.CategoryName == model.Category.CategoryName).First();
             dBContext.News.Add(model);
             await dBContext.SaveChangesAsync();
-            return dBContext.News.Skip(dBContext.News.Count() - 1).Take(1).FirstOrDefault();
+            return model;
         }
         public async Task<News> Delete(int id)
         {

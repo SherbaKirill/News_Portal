@@ -34,12 +34,15 @@ namespace MVCNewsPortal
             services.AddDbContext<DBContext>(options =>
             options.UseSqlServer(
                 Configuration.GetConnectionString("DefaultConnection")));
+            services.AddIdentity<User, IdentityRole>().AddEntityFrameworkStores<ApplicationDbContext>();
             services.AddControllersWithViews();
             services.AddRazorPages();
             services.AddTransient<IRepository<News>, NewsRepository>();
             services.AddTransient<IRepository<Category>, CategoryRepository>();
             services.AddTransient<ISearchNewsService, SearchNewsService>();
-            services.AddTransient<IManageNewsService, NewsService>();
+            services.AddTransient<IManageNewsService, ManageNewsService>();
+            services.AddTransient<ISearchCategoryService, SearchCategoryService>();
+            services.AddTransient<IManageCategoryService, ManageCategoryService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -52,7 +55,7 @@ namespace MVCNewsPortal
             }
             else
             {
-                app.UseExceptionHandler("/Home/Error");
+                app.UseExceptionHandler("/News/Error");
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
@@ -72,10 +75,10 @@ namespace MVCNewsPortal
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}");
+                    pattern: "{controller=News}/{action=Index}");
                 endpoints.MapControllerRoute(
                     name: "categoryFilter",
-                    pattern: "Home/List/{category?}", defaults: new { Controller = "Home", action = "Index" });
+                    pattern: "News/List/{category?}", defaults: new { Controller = "News", action = "Index" });
                 endpoints.MapRazorPages();
             });
         }

@@ -6,7 +6,7 @@ C:\Users\sherb\Documents\GitHub\News_Portal\BusinessLayer\bin\Debug\netcoreapp3.
 C:\Users\sherb\Documents\GitHub\News_Portal\BusinessLayer\obj\Debug\netcoreapp3.1\BusinessLayer.csprojAssemblyReference.cache
 C:\Users\sherb\Documents\GitHub\News_Portal\BusinessLayer\obj\Debug\netcoreapp3.1\BusinessLayer.AssemblyInfoInputs.cache
 C:\Users\sherb\Documents\GitHub\News_Portal\BusinessLayer\obj\Debug\netcoreapp3.1\BusinessLayer.AssemblyInfo.cs
-C:\Users\sherb\Documents\GitHub\News_Portal\BusinessLayer\obj\Debug\netcoreapp3.1\BusinessLayer.csproj.CoreCompileInputs.cache
 C:\Users\sherb\Documents\GitHub\News_Portal\BusinessLayer\obj\Debug\netcoreapp3.1\BusinessLayer.csproj.CopyComplete
 C:\Users\sherb\Documents\GitHub\News_Portal\BusinessLayer\obj\Debug\netcoreapp3.1\BusinessLayer.dll
 C:\Users\sherb\Documents\GitHub\News_Portal\BusinessLayer\obj\Debug\netcoreapp3.1\BusinessLayer.pdb
+C:\Users\sherb\Documents\GitHub\News_Portal\BusinessLayer\obj\Debug\netcoreapp3.1\BusinessLayer.csproj.CoreCompileInputs.cache

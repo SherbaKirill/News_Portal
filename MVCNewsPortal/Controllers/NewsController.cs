@@ -24,7 +24,7 @@ namespace MVCNewsPortal.Controllers
         public NewsController(ILogger<NewsController> logger,ISearchNewsService newsSearch,IManageNewsService newsService, ISearchCategoryService categorySearch,IManageCategoryService categoryService)
         {
             _logger = logger;
-            this._searchNews = newsSearch;
+            _searchNews = newsSearch;
             _newsService = newsService;
             _searchCategory = categorySearch;
             _categoryService = categoryService;

@@ -23,13 +23,12 @@ namespace BusinessLayer.Service
 
         public IEnumerable<NewsDomain> GetNews()
         {
-            var mapper = new MapperConfiguration (
-                cfg => cfg.CreateMap<News,NewsDomain>()
-            .ForPath(   c=> c.Category.CategoryName,    x=> x.MapFrom(d=>d.Category.CategoryName))
-            .ForPath(   c => c.Category.DisplayName,    x => x.MapFrom(d => d.Category.DisplayName))
+            var mapper = new MapperConfiguration(cfg => cfg.CreateMap<News, NewsDomain>()
+                .ForPath(c => c.Category.CategoryName, x => x.MapFrom(d => d.Category.CategoryName))
+                .ForPath(c => c.Category.DisplayName, x => x.MapFrom(d => d.Category.DisplayName))
             ).CreateMapper();
 
-            return mapper.Map<IQueryable<News>, List<NewsDomain>>(_allNews.ReadAll().Result);
+            return mapper.Map<IQueryable<News>, List<NewsDomain>>(_allNews.ReadAll().Result.OrderByDescending(i=>i.Id));
         }
 
         public IEnumerable<NewsDomain> GetNewsByCategory(string category)
@@ -40,11 +39,10 @@ namespace BusinessLayer.Service
             {
                 news = _allNews.ReadAll().Result.Where(i => i.Category.CategoryName == _category).OrderByDescending(i => i.Id);
             }
-            var mapper = new MapperConfiguration(
-                 cfg => cfg.CreateMap<News, NewsDomain>()
-             .ForPath(c => c.Category.CategoryName, x => x.MapFrom(d => d.Category.CategoryName))
-             .ForPath(c => c.Category.DisplayName, x => x.MapFrom(d => d.Category.DisplayName))
-             ).CreateMapper();
+            var mapper = new MapperConfiguration(cfg => cfg.CreateMap<News, NewsDomain>()
+                .ForPath(c => c.Category.CategoryName, x => x.MapFrom(d => d.Category.CategoryName))
+                .ForPath(c => c.Category.DisplayName, x => x.MapFrom(d => d.Category.DisplayName))
+            ).CreateMapper();
 
             return mapper.Map<IQueryable<News>, List<NewsDomain>>(news);
         }
@@ -57,8 +55,8 @@ namespace BusinessLayer.Service
             if (news == null)
                 throw new Exception("id не обнаружен");
 
-            var newsDTO = new NewsDomain().ToNewsDomain(news);
-            return newsDTO;
+            var newsDomain = new NewsDomain().ToNewsDomain(news);
+            return newsDomain;
         }
     }
 }

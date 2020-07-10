@@ -20,7 +20,7 @@ using MVCNewsPortal.Models;
 #line hidden
 #nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"4c43a64c6d358b9c30c15f07d10383ea1e24bf0e", @"/Views/News/CategoryList.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"beb3a5c1f6e1472f338ea6ab3efd8a8bc0ac84c2", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"17825fe4ad6da918757d5e6b034a650a67c82732", @"/Views/_ViewImports.cshtml")]
     public class Views_News_CategoryList : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<IEnumerable<MVCNewsPortal.Models.CategoryViewModel>>
     {
         #pragma warning disable 1998

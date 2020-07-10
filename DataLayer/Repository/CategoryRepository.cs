@@ -35,14 +35,14 @@ namespace DataLayer.Repository
             if (category == null)
                 return new Category();
             dBContext.Category.Remove(category);
-            await dBContext.SaveChangesAsync();
+            dBContext.SaveChangesAsync();
             return category;
         }
         public async Task<Category> Update(Category model)
         {
             Category category = await dBContext.Category.FindAsync(model.Id);
             category.Update(model);
-            await dBContext.SaveChangesAsync();
+            dBContext.SaveChangesAsync();
             return category;
         }
     }

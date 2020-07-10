@@ -15,11 +15,11 @@ namespace MVCNewsPortal.Models
 
         public CategoryDomain ToCategoryDomain()
         {
-            return new CategoryDomain { DisplayName = DisplayName, CategoryName = CategoryName };
+            return new CategoryDomain { DisplayName = DisplayName, CategoryName = CategoryName , Id=Id};
         }
         public CategoryViewModel ToCategoryViewModel(CategoryDomain obj)
         {
-            return new CategoryViewModel { CategoryName = obj.CategoryName, DisplayName = obj.DisplayName };
+            return new CategoryViewModel { CategoryName = obj.CategoryName, DisplayName = obj.DisplayName, Id=obj.Id};
         }
 
     }
