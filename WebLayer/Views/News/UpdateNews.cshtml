@@ -1,0 +1,28 @@
+﻿@model WebLayer.Models.NewsViewModel
+<form method="post">
+    <p>
+        <label>Id:</label><br />
+        <label>@Model.Id</label><br />
+    </p>
+    <p>
+        <label>Name:</label><br />
+        @Html.TextArea("Name", Model.Name)
+    </p>
+    <p>
+        <label>Description:</label><br />
+        @Html.TextArea("Description", Model.Description)
+    </p>
+    <p>
+        <label>Content:</label><br />
+        @Html.TextArea("Content", Model.Content)
+    </p>
+    <p>
+        <label>Img:</label><br />
+        @Html.TextArea("Img", Model.Image)
+    </p>
+    <p>
+        <label>Category:</label><br />
+        <label>@Model.Category.CategoryName</label><br />
+    </p>
+    <input type="submit" value="Отправить" />
+</form>

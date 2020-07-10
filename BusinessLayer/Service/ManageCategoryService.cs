@@ -21,13 +21,13 @@ namespace BusinessLayer.Service
             if (category == null)
                 throw new Exception("отсутствует");
 
-            return await Task.Run(() => category.ToCategoryDomain(_allCategory.Create(category.ToCategory()).Result));
+            return category.ToCategoryDomain(await _allCategory.Create(category.ToCategory()));
         }
 
         public async Task<CategoryDomain> Update(CategoryDomain category)
         {
-            await _allCategory.Update(category.ToCategory());
-            return category;
+            var result=await _allCategory.Update(category.ToCategory());
+            return category.ToCategoryDomain(result);
         }
 
         public void Delete(int Id)

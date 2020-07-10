@@ -1,8 +1,0 @@
-﻿@model MVCNewsPortal.Models.NewsViewModel
-    <div class="text-center">
-        <h1>@Model.Name</h1>
-        <img class="img-thumbnail" src="@Model.Img" alt="@Model.Name" />
-        < <p>@Model.Content</p>
-        <p><a class="btn-dark"  asp-area="" asp-controller="News" asp-action="UpdateNews"asp-route-Id=@Model.Id>Update</a> </p>
-        <p><a class="btn-dark" asp-area="" asp-controller="News" asp-action="DeleteNews"asp-route-Id=@Model.Id>Delete</a> </p>
-    </div>

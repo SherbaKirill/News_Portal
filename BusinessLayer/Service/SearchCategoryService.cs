@@ -12,7 +12,8 @@ namespace BusinessLayer.Service
 {
     public class SearchCategoryService:ISearchCategoryService
     {
-        IRepository<Category> _newsCategory;
+        private readonly IRepository<Category> _newsCategory;
+
         public SearchCategoryService(IRepository<Category> newsCategory)
         {
             _newsCategory = newsCategory;
@@ -22,7 +23,7 @@ namespace BusinessLayer.Service
         {
             var mapper = new MapperConfiguration(cfg => cfg.CreateMap<Category, CategoryDomain>()).CreateMapper();
 
-            return await Task.Run(()=>mapper.Map<IQueryable<Category>, List<CategoryDomain>>(_newsCategory.ReadAll().Result));
+            return mapper.Map<IQueryable<Category>, List<CategoryDomain>>(await _newsCategory.ReadAll());
         }
 
         public async Task<CategoryDomain> GetCategoryById(int? Id)
@@ -30,7 +31,7 @@ namespace BusinessLayer.Service
             if (Id == null)
                 throw new Exception("id отсутствует");
 
-            var category = await Task.Run(()=>_newsCategory.Read(Id.Value).Result);
+            var category = await _newsCategory.Read(Id.Value);
             if (category == null)
                 throw new Exception("id не обнаружен");
 

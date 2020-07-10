@@ -12,32 +12,32 @@ namespace BusinessLayer.Service
     {
         private readonly IRepository<News> _allNews;
         private readonly ISearchCategoryService _searchCategory;
-        private readonly IManageCategoryService manageCategoryService;
+        private readonly IManageCategoryService _manageCategoryService;
 
         public ManageNewsService(IRepository<News> repository, ISearchCategoryService CategoryRepository,IManageCategoryService manageCategory)
         {
             _allNews = repository;
             _searchCategory = CategoryRepository;
-            manageCategoryService = manageCategory;
+            _manageCategoryService = manageCategory;
         }
 
         public async Task<NewsDomain> Create(NewsDomain news)
         {
-            var category = _searchCategory.GetCategories().Result.Where(i => i.CategoryName == news.Category.CategoryName).FirstOrDefault();
+            var category =(await _searchCategory.GetCategories()).Where(i => i.CategoryName == news.Category.CategoryName).FirstOrDefault();
             if (category == null)
-               await manageCategoryService.Create(news.Category);
+               await _manageCategoryService.Create(news.Category);
 
             if (news == null)
                 throw new Exception("отсутствует");
 
-            return news.ToNewsDomain(_allNews.Create(news.ToNews()).Result);
+            return news.ToNewsDomain(await _allNews.Create(news.ToNews()));
 
         }
 
         public async Task<NewsDomain> Update(NewsDomain news)
         {
-           await _allNews.Update(news.ToNews());
-            return news;
+           var result =await _allNews.Update(news.ToNews());
+            return news.ToNewsDomain(result);
         }
         public void Delete(int Id)
         {

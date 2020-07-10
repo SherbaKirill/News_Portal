@@ -1,0 +1,12 @@
+﻿@model IEnumerable<WebLayer.Models.CategoryViewModel>
+<div class="row mt-4 mb-2">
+    @{
+        if (Model != null)
+            foreach (var category in Model)
+            {
+                <div class="col-lg-2">
+                    <p><a href="">@category.DisplayName</a> </p>
+                </div>
+            }
+    }
+</div>

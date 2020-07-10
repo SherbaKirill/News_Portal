@@ -1,0 +1,11 @@
+﻿@model WebLayer.Models.NewsViewModel
+    <div class="text-center">
+        <h1>@Model.Name</h1>
+        <img class="img" src="@Model.Image" alt="@Model.Name" />
+        < <p>@Model.Content</p>
+        @if (User.IsInRole("admin") || User.IsInRole("moderator"))
+        {
+        <p><a class="nav-link text-dark"   asp-controller="News" asp-action="UpdateNews"asp-route-Id=@Model.Id>Update</a> </p>
+        <p><a class="nav-link text-dark"  asp-controller="News" asp-action="DeleteNews"asp-route-Id=@Model.Id>Delete</a> </p>
+        }
+    </div>

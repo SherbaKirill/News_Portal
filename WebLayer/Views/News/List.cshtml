@@ -1,0 +1,17 @@
+﻿@model IEnumerable<WebLayer.Models.NewsViewModel>
+<h2> @Model.First().Category.DisplayName </h2>
+<div class="row mt-4 mb-2">
+    @{
+        if (Model != null)
+            foreach (var news in Model)
+            {
+                <div class="col-lg-4">
+                    <h2>@news.Name</h2>
+                    <img class="img-thumbnail" src="@news.Image" alt="@news.Name" />
+                    <p>@news.Description</p>
+                    <p><a class="btn-dark" href="/News/NewsId/@news.Id">Подробнее</a> </p>
+
+                </div>
+            }
+    }
+</div>

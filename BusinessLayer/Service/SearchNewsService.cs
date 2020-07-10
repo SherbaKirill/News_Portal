@@ -13,8 +13,8 @@ namespace BusinessLayer.Service
     public class SearchNewsService: ISearchNewsService
     {
         private readonly IRepository<News> _allNews;
-
         private readonly IRepository<Category> _newsCategory;
+
         public SearchNewsService(IRepository<News> allNews, IRepository<Category> newsCategory)
         {
             _allNews = allNews;
@@ -28,15 +28,15 @@ namespace BusinessLayer.Service
                 .ForPath(c => c.Category.DisplayName, x => x.MapFrom(d => d.Category.DisplayName))
             ).CreateMapper();
 
-            return mapper.Map<IQueryable<News>, List<NewsDomain>>(await Task.Run(()=>_allNews.ReadAll().Result.OrderByDescending(i=>i.Id)));
+            return mapper.Map<IQueryable<News>, List<NewsDomain>>(await _allNews.ReadAll()).OrderByDescending(i=>i.Id);
         }
 
         public async Task<IEnumerable<NewsDomain>> GetNewsByCategory(string category)
         {
             var _category = category;
             IQueryable<News> news = null;
-            if (await Task.Run(()=>_newsCategory.ReadAll().Result.Any(x => x.CategoryName == _category)))
-                news = _allNews.ReadAll().Result.Where(i => i.Category.CategoryName == _category).OrderByDescending(i => i.Id);
+            if ((await _newsCategory.ReadAll()).Any(x => x.CategoryName == _category))
+                news =(await _allNews.ReadAll()).Where(i => i.Category.CategoryName == _category).OrderByDescending(i => i.Id);
 
             var mapper = new MapperConfiguration(cfg => cfg.CreateMap<News, NewsDomain>()
                 .ForPath(c => c.Category.CategoryName, x => x.MapFrom(d => d.Category.CategoryName))
@@ -50,7 +50,7 @@ namespace BusinessLayer.Service
             if (Id == null)
                 throw new Exception("id отсутствует");
 
-            var news =await Task.Run(()=>_allNews.Read(Id.Value).Result);
+            var news =await _allNews.Read(Id.Value);
             if (news == null)
                 throw new Exception("id не обнаружен");
 
