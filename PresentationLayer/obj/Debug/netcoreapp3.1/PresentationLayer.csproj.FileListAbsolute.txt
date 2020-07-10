@@ -92,3 +92,7 @@ C:\Users\sherb\Documents\GitHub\News_Portal\PresentationLayer\obj\Debug\netcorea
 C:\Users\sherb\Documents\GitHub\News_Portal\PresentationLayer\obj\Debug\netcoreapp3.1\Razor\Views\Roles\Edit.cshtml.g.cs
 C:\Users\sherb\Documents\GitHub\News_Portal\PresentationLayer\obj\Debug\netcoreapp3.1\Razor\Views\Roles\Index.cshtml.g.cs
 C:\Users\sherb\Documents\GitHub\News_Portal\PresentationLayer\obj\Debug\netcoreapp3.1\Razor\Views\Roles\UserList.cshtml.g.cs
+C:\Users\sherb\Documents\GitHub\News_Portal\PresentationLayer\obj\Debug\netcoreapp3.1\Razor\Views\News\CreateCategory.cshtml.g.cs
+C:\Users\sherb\Documents\GitHub\News_Portal\PresentationLayer\obj\Debug\netcoreapp3.1\Razor\Views\News\DeleteCategory.cshtml.g.cs
+C:\Users\sherb\Documents\GitHub\News_Portal\PresentationLayer\obj\Debug\netcoreapp3.1\Razor\Views\News\UpdateCategory.cshtml.g.cs
+C:\Users\sherb\Documents\GitHub\News_Portal\PresentationLayer\obj\Debug\netcoreapp3.1\Razor\Views\Shared\Components\User\Default.cshtml.g.cs

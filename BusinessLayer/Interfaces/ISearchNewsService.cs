@@ -1,16 +1,13 @@
 ﻿using BusinessLayer.Models;
-using DataLayer.Models;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using System.Threading.Tasks;
 
 namespace BusinessLayer.Interfaces
 {
     public  interface ISearchNewsService
     {
-        public IEnumerable<NewsDomain> GetNews();
-        public IEnumerable<NewsDomain> GetNewsByCategory(string category);
-        public NewsDomain GetNewsById(int? Id);
+        public Task<IEnumerable<NewsDomain>> GetNews();
+        public Task<IEnumerable<NewsDomain>> GetNewsByCategory(string category);
+        public Task<NewsDomain> GetNewsById(int? Id);
     }
 }

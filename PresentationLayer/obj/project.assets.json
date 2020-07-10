@@ -5191,9 +5191,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\sherb\\Documents\\GitHub\\News_Portal\\PresentationLayer\\PresentationLayer.csproj",
-      "projectName": "PresentationLayer",
-      "projectPath": "C:\\Users\\sherb\\Documents\\GitHub\\News_Portal\\PresentationLayer\\PresentationLayer.csproj",
+      "projectUniqueName": "C:\\Users\\sherb\\Documents\\GitHub\\News_Portal\\PresentationLayer\\WEBLayer.csproj",
+      "projectName": "WEBLayer",
+      "projectPath": "C:\\Users\\sherb\\Documents\\GitHub\\News_Portal\\PresentationLayer\\WEBLayer.csproj",
       "packagesPath": "C:\\Users\\sherb\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\sherb\\Documents\\GitHub\\News_Portal\\PresentationLayer\\obj\\",
       "projectStyle": "PackageReference",

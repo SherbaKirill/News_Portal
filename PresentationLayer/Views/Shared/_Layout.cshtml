@@ -24,20 +24,12 @@
                 </ul>
 
             </div>
-            @if (User.Identity.IsAuthenticated)
+            @await Component.InvokeAsync("User")
+            @if (User.IsInRole("admin") || User.IsInRole("moderator"))
             {
-                <p>@User.Identity.Name</p>
-
-                <form method="post" asp-controller="Account" asp-action="Logout">
-                    <input type="submit" value="Выход" />
-                </form>
+                <a class="nav-link text-dark" asp-area="" asp-controller="News" asp-action="CreateNews">Create</a>
+                <a class="nav-link text-dark" asp-area="" asp-controller="User" asp-action="Index">User</a>
             }
-            else
-            {
-                <a asp-controller="Account" asp-action="Login">Вход</a><br />
-                <a asp-controller="Account" asp-action="Register">Регистрация</a>
-            }
-            <a class="nav-link text-dark" asp-area="" asp-controller="News" asp-action="CreateNews">Create</a>
         </nav>
     </header>
         <div class="row">

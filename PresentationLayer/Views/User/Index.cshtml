@@ -6,7 +6,7 @@
     {
         <tr>
             <td>@user.Email</td>
-            <td><img src=@user.Img /></td>
+            <td><img src=@user.Image /></td>
             <td>
                 <form asp-action="Delete" asp-route-id="@user.Id" method="post">
                     <a class="btn btn-sm btn-primary" asp-action="Edit" asp-route-id="@user.Id">Изменить</a>

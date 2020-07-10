@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataLayer", "..\DataLayer\D
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BusinessLayer", "..\BusinessLayer\BusinessLayer.csproj", "{1264DB60-9A20-4FBD-8383-24119216128D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PresentationLayer", "..\PresentationLayer\PresentationLayer.csproj", "{86A86CCE-9F9B-41D6-9D91-3163917823CF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WEBLayer", "..\PresentationLayer\WEBLayer.csproj", "{86A86CCE-9F9B-41D6-9D91-3163917823CF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -9,7 +7,7 @@ using PresentationLayer.Models;
 
 namespace PresentationLayer.Controllers
 {
-    
+
     public class UserController : Controller
     {
         UserManager<UserViewModel> _userManager;
@@ -18,17 +16,20 @@ namespace PresentationLayer.Controllers
         {
             _userManager = userManager;
         }
+
         [Authorize(Roles = "admin,moderator")]
         public IActionResult Index() => View(_userManager.Users.ToList());
+
         [Authorize(Roles = "admin,moderator")]
         public IActionResult Create() => View();
+
         [Authorize(Roles = "admin,moderator")]
         [HttpPost]
         public async Task<IActionResult> Create(CreateUserViewModel model)
         {
             if (ModelState.IsValid)
             {
-                UserViewModel user = new UserViewModel { Email = model.Email, UserName = model.Email, Img = model.Img };
+                UserViewModel user = new UserViewModel { Email = model.Email, UserName = model.Email, Image = model.Image };
                 var result = await _userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
@@ -44,6 +45,7 @@ namespace PresentationLayer.Controllers
             }
             return View(model);
         }
+
         [Authorize]
         public async Task<IActionResult> Edit(string id)
         {
@@ -52,9 +54,10 @@ namespace PresentationLayer.Controllers
             {
                 return NotFound();
             }
-            EditUserViewModel model = new EditUserViewModel { Id = user.Id, Email = user.Email, Img = user.Img };
+            EditUserViewModel model = new EditUserViewModel { Id = user.Id, Email = user.Email, Image = user.Image };
             return View(model);
         }
+
         [Authorize]
         [HttpPost]
         public async Task<IActionResult> Edit(EditUserViewModel model)
@@ -66,12 +69,15 @@ namespace PresentationLayer.Controllers
                 {
                     user.Email = model.Email;
                     user.UserName = model.Email;
-                    user.Img = model.Img;
+                    user.Image = model.Image;
 
                     var result = await _userManager.UpdateAsync(user);
                     if (result.Succeeded)
                     {
+                        if(User.IsInRole("admin")||User.IsInRole("moderator"))
                         return RedirectToAction("Index");
+
+                        return RedirectToAction("Index", "News");
                     }
                     else
                     {
@@ -84,7 +90,8 @@ namespace PresentationLayer.Controllers
             }
             return View(model);
         }
-        [Authorize]
+
+        [Authorize(Roles = "admin,moderator")]
         [HttpPost]
         public async Task<ActionResult> Delete(string id)
         {
@@ -93,6 +100,10 @@ namespace PresentationLayer.Controllers
             {
                 IdentityResult result = await _userManager.DeleteAsync(user);
             }
+
+            if (_userManager.GetUserId(HttpContext.User) == id)
+                return RedirectToAction("Logout", "Account");
+
             return RedirectToAction("Index");
         }
     }

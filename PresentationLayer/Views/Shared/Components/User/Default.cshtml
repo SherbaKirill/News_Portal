@@ -1,0 +1,14 @@
+﻿
+@if (User.Identity.IsAuthenticated)
+{
+            <a class="nav-link" asp-area="" asp-controller="User" asp-action="Edit" asp-route-Id=@ViewData["id"]>@User.Identity.Name</a>
+        <form method="post" asp-controller="Account" asp-action="Logout">
+            <input type="submit" value="Выход" />
+        </form>
+        }
+        else
+        {
+        <a asp-controller="Account" asp-action="Login">Вход</a>
+        <br />
+        <a asp-controller="Account" asp-action="Register">Регистрация</a>
+        }

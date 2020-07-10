@@ -1,0 +1,16 @@
+﻿@model PresentationLayer.Models.CategoryViewModel
+    <form method="post">
+        <p>
+            <label>Id:</label><br />
+            <label>@Model.Id</label><br />
+        </p>
+        <p>
+            <label>DisplayName:</label><br />
+            @Html.TextArea("DisplayName", Model.DisplayName)
+        </p>
+        <p>
+            <label>CategoryName:</label><br />
+            <label>@Model.CategoryName</label><br />
+        </p>
+        <input type="submit" value="Отправить" />
+    </form>

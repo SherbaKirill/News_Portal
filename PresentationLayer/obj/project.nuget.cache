@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "PF0bGMYNA7tjXCFdTbM1j/D1xzpKuIFuBVtOtchsxzk3L76JAYbowNmVeUu2KFCYnWtcavlm8Og04HTzJU/snw==",
+  "dgSpecHash": "8S0P5NjybI/PuaHXkFaAMJ2dblNJhqg9UOLmayNb/etntxvAox8Dnd0XW4e1YLt94gcqIxymnM0zhIA/zO1yiw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\sherb\\Documents\\GitHub\\News_Portal\\PresentationLayer\\PresentationLayer.csproj",
+  "projectFilePath": "C:\\Users\\sherb\\Documents\\GitHub\\News_Portal\\PresentationLayer\\WEBLayer.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\sherb\\.nuget\\packages\\automapper\\10.0.0\\automapper.10.0.0.nupkg.sha512",
     "C:\\Users\\sherb\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\3.1.5\\microsoft.aspnetcore.cryptography.internal.3.1.5.nupkg.sha512",

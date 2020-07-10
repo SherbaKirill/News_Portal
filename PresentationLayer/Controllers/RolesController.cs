@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
@@ -14,14 +13,17 @@ namespace PresentationLayer.Controllers
     {
         RoleManager<IdentityRole> _roleManager;
         UserManager<UserViewModel> _userManager;
+
         public RolesController(RoleManager<IdentityRole> roleManager, UserManager<UserViewModel> userManager)
         {
             _roleManager = roleManager;
             _userManager = userManager;
         }
+
         public IActionResult Index() => View(_roleManager.Roles.ToList());
 
         public IActionResult Create() => View();
+
         [HttpPost]
         public async Task<IActionResult> Create(string name)
         {
@@ -75,6 +77,7 @@ namespace PresentationLayer.Controllers
 
             return NotFound();
         }
+
         [HttpPost]
         public async Task<IActionResult> Edit(string userId, List<string> roles)
         {

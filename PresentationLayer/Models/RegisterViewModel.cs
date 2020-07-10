@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace PresentationLayer.Models
 {
@@ -15,7 +11,7 @@ namespace PresentationLayer.Models
         [Required]
         [DataType(DataType.ImageUrl)]
         [Display(Name = "Аватар")]
-        public string Img { get; set; }
+        public string Image { get; set; }
 
         [Required]
         [DataType(DataType.Password)]

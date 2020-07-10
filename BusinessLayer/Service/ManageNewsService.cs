@@ -2,31 +2,41 @@
 using BusinessLayer.Models;
 using DataLayer;
 using DataLayer.Models;
-using DataLayer.Repository;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
+using System.Threading.Tasks;
 
 namespace BusinessLayer.Service
 {
     public class ManageNewsService:IManageNewsService
     {
         private readonly IRepository<News> _allNews;
-        public ManageNewsService(IRepository<News> repository)
+        private readonly ISearchCategoryService _searchCategory;
+        private readonly IManageCategoryService manageCategoryService;
+
+        public ManageNewsService(IRepository<News> repository, ISearchCategoryService CategoryRepository,IManageCategoryService manageCategory)
         {
             _allNews = repository;
+            _searchCategory = CategoryRepository;
+            manageCategoryService = manageCategory;
         }
-        public NewsDomain Create(NewsDomain news)
+
+        public async Task<NewsDomain> Create(NewsDomain news)
         {
+            var category = _searchCategory.GetCategories().Result.Where(i => i.CategoryName == news.Category.CategoryName).FirstOrDefault();
+            if (category == null)
+               await manageCategoryService.Create(news.Category);
+
             if (news == null)
                 throw new Exception("отсутствует");
+
             return news.ToNewsDomain(_allNews.Create(news.ToNews()).Result);
 
         }
-        public NewsDomain Update(NewsDomain news)
+
+        public async Task<NewsDomain> Update(NewsDomain news)
         {
-            _allNews.Update(news.ToNews());
+           await _allNews.Update(news.ToNews());
             return news;
         }
         public void Delete(int Id)

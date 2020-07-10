@@ -6,7 +6,7 @@ using DataLayer.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
+using System.Threading.Tasks;
 
 namespace BusinessLayer.Service
 {
@@ -18,19 +18,19 @@ namespace BusinessLayer.Service
             _newsCategory = newsCategory;
         }
 
-        public IEnumerable<CategoryDomain> GetCategories()
+        public async Task<IEnumerable<CategoryDomain>> GetCategories()
         {
             var mapper = new MapperConfiguration(cfg => cfg.CreateMap<Category, CategoryDomain>()).CreateMapper();
 
-            return mapper.Map<IQueryable<Category>, List<CategoryDomain>>(_newsCategory.ReadAll().Result);
+            return await Task.Run(()=>mapper.Map<IQueryable<Category>, List<CategoryDomain>>(_newsCategory.ReadAll().Result));
         }
 
-        public CategoryDomain GetCategoryById(int? Id)
+        public async Task<CategoryDomain> GetCategoryById(int? Id)
         {
             if (Id == null)
                 throw new Exception("id отсутствует");
 
-            var category = _newsCategory.Read(Id.Value).Result;
+            var category = await Task.Run(()=>_newsCategory.Read(Id.Value).Result);
             if (category == null)
                 throw new Exception("id не обнаружен");
 
