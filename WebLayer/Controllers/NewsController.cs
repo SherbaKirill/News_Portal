@@ -93,8 +93,8 @@ namespace WebLayer.Controllers
         [HttpGet]
         public async Task<IActionResult> UpdateNews(int Id)
         {
-            var newsDomain = _searchNews.GetNewsById(Id);
-            return View(new NewsViewModel().ToNewsViewModel(await newsDomain));
+            var newsDomain = await _searchNews.GetNewsById(Id);
+            return View(new NewsViewModel().ToNewsViewModel( newsDomain));
         }
 
         [Authorize(Roles = "admin,moderator")]
@@ -134,7 +134,7 @@ namespace WebLayer.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateCategory(CategoryViewModel category)
         {
-           var result=await _categoryService.Create(category.ToCategoryDomain());
+            await _categoryService.Create(category.ToCategoryDomain());
             return RedirectToAction("List");
         }
 
