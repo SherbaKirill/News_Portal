@@ -16,7 +16,7 @@ namespace DataLayer.Repository
 
         public async Task<News> Read(int id)
         {
-            News news = dBContext.News.Include(c=>c.Category).Where(c=>c.Id==id).First();
+            News news = dBContext.News.Include(c=>c.Category).FirstOrDefault(c=>c.Id==id);
             if (news == null)
                 return new News();
 
@@ -29,7 +29,7 @@ namespace DataLayer.Repository
         }
         public async Task<News> Create(News model)
         {
-            model.Category = dBContext.Category.Where(c => c.CategoryName == model.Category.CategoryName).First();
+            model.Category = dBContext.Category.FirstOrDefault(c => c.CategoryName == model.Category.CategoryName);
             dBContext.News.Add(model);
             await dBContext.SaveChangesAsync();
             return model;
@@ -46,10 +46,10 @@ namespace DataLayer.Repository
         }
         public async Task<News> Update(News model)
         {
-            News news = dBContext.News.Where(c => c.Id == model.Id).First();
+            News news = dBContext.News.Include(c => c.Category).First(c => c.Id == model.Id);
             news.Update(model);
             await dBContext.SaveChangesAsync();
-            return dBContext.News.Where(c=>c.Id==news.Id).First();
+            return news;
         }
     }
 }

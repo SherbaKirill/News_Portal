@@ -23,12 +23,12 @@ namespace BusinessLayer.Service
 
         public async Task<NewsDomain> Create(NewsDomain news)
         {
-            var category =(await _searchCategory.GetCategories()).Where(i => i.CategoryName == news.Category.CategoryName).FirstOrDefault();
-            if (category == null)
-               await _manageCategoryService.Create(news.Category);
-
             if (news == null)
                 throw new Exception("отсутствует");
+
+            var category =(await _searchCategory.GetCategories()).FirstOrDefault(i => i.CategoryName == news.Category.CategoryName);
+            if (category == null)
+               await _manageCategoryService.Create(news.Category);    
 
             return news.ToNewsDomain(await _allNews.Create(news.ToNews()));
 
@@ -39,9 +39,10 @@ namespace BusinessLayer.Service
            var result =await _allNews.Update(news.ToNews());
             return news.ToNewsDomain(result);
         }
-        public void Delete(int Id)
+
+        public void Delete(int id)
         {
-            _allNews.Delete(Id);
+            _allNews.Delete(id);
         }
     }
 }

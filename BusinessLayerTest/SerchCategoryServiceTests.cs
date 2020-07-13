@@ -18,6 +18,7 @@ namespace BusinessLayer.Test
         [Fact]
         public async Task GetAll()
         {
+            // Arrange
             var mock = new Mock<IRepository<Category>>();
             mock.Setup(repo => repo.ReadAll())
             .ReturnsAsync(GetTestSessions());
@@ -34,12 +35,17 @@ namespace BusinessLayer.Test
         [Fact]
         public async Task GetCategoryById()
         {
+            // Arrange
             var mock = new Mock<IRepository<Category>>();
             int testSessionId = 1;
-            mock.Setup(repo => repo.Read(testSessionId)).ReturnsAsync(GetTestSessions().Where(x=>x.Id==testSessionId).FirstOrDefault);
+            mock.Setup(repo => repo.Read(testSessionId))
+                .ReturnsAsync(GetTestSessions().Where(x=>x.Id==testSessionId).FirstOrDefault);
             var searchCategory = new SearchCategoryService(mock.Object);
 
+            // Act
             var result = await searchCategory.GetCategoryById(testSessionId);
+
+            // Assert
             var viewResult = Assert.IsType<CategoryDomain>(result);
             Assert.Equal(1, result.Id);
             Assert.Equal("Category1", result.CategoryName);

@@ -45,12 +45,13 @@ namespace BusinessLayer.Service
 
             return mapper.Map<IQueryable<News>, List<NewsDomain>>(news);
         }
-        public async Task<NewsDomain> GetNewsById(int? Id)
+
+        public async Task<NewsDomain> GetNewsById(int? id)
         {
-            if (Id == null)
+            if (id == null)
                 throw new Exception("id отсутствует");
 
-            var news =await _allNews.Read(Id.Value);
+            var news =await _allNews.Read(id.Value);
             if (news == null)
                 throw new Exception("id не обнаружен");
 

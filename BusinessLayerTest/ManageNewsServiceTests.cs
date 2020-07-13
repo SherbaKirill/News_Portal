@@ -18,7 +18,7 @@ namespace BusinessLayer.Test
         #region Create
         [Fact]
         public async Task Create()
-        {
+        {   // Arrange
             var mock = new Mock<IRepository<News>>();
             News news = new News() {
                 Image = "firstImage",
@@ -43,9 +43,11 @@ namespace BusinessLayer.Test
                 .ReturnsAsync(news);
 
             ManageNewsService manageCategory = new ManageNewsService(mock.Object,mock1.Object,mock2.Object);
-
+            
+            // Act
             var result = await manageCategory.Create(news1);
 
+            // Assert
             Assert.NotNull(result);
             Assert.Equal(result.Name, news.Name);
         }
@@ -54,6 +56,7 @@ namespace BusinessLayer.Test
         [Fact]
         public async Task Update()
         {
+            // Arrange
             var mock = new Mock<IRepository<News>>();
             News news = new News()
             {
@@ -79,8 +82,10 @@ namespace BusinessLayer.Test
 
             ManageNewsService manageCategory = new ManageNewsService(mock.Object, mock1.Object, mock2.Object);
 
+            // Act
             var result = await manageCategory.Update(news1);
 
+            // Assert
             Assert.NotNull(result);
             Assert.Equal(result.Name, news.Name);
         }

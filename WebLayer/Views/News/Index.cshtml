@@ -1,17 +1,47 @@
 ﻿@model IEnumerable<WebLayer.Models.NewsViewModel>
-<h2> Все новости </h2>
+<table>
+    <tr>
+        <td>
+            <h2>Все новости</h2>
+        </td>
+        <td>
+            @if (User.IsInRole("admin") || User.IsInRole("moderator"))
+            {
+                <h2><u><a class="nav-link text-dark" asp-area="" asp-controller="News" asp-action="CreateNews">Добавить новость</a></u></h2>
+            }
+        </td>
+    </tr>
+</table>
+   
+
 <div class="row mt-4 mb-2">
     @{
         if (Model != null)
             foreach (var news in Model)
             {
                 <div class="col-lg-4">
-                    <h2>@news.Name</h2>
+                    <table>
+                        <tr>
+                            <td width="75%">
+                                <h2>@news.Name</h2>
+                            </td>
+                            <td nowrap align="right" width="25%">
+                                @if (User.IsInRole("admin") || User.IsInRole("moderator"))
+                                {
+                                <p><u><a asp-area="" asp-controller="News" asp-action="UpdateNews" asp-route-Id=@news.Id>&#9999 Редактировать</a></u></p>
+                                    <u><a asp-area="" asp-controller="News" asp-action="DeleteNews" asp-route-Id=@news.Id> &#10060 Удалить</a></u>
+                                }
+                            </td>
+                        </tr>
+                    </table>
+
                     <img class="img-thumbnail" src="@news.Image" alt="@news.Name" />
                     <p>@news.Description</p>
-                    <p><a class="btn-dark" href="/News/NewsId/@news.Id">Подробнее</a> </p>
+                    <U><a href="/News/NewsId/@news.Id">Подробнее</a> </U>
 
                 </div>
+
             }
-    }
+        }
 </div>
+

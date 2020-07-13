@@ -20,6 +20,7 @@ namespace BusinessLayer.Test
         [Fact]
         public async Task Create()
         {
+            // Arrange
             var mock = new Mock<IRepository<Category>>();
             Category category = new Category() { DisplayName = "Test", CategoryName = "Test" };
             CategoryDomain category1 = new CategoryDomain() { DisplayName = "Test", CategoryName = "Test" };
@@ -27,8 +28,10 @@ namespace BusinessLayer.Test
                 .ReturnsAsync(category);
             ManageCategoryService manageCategory = new ManageCategoryService(mock.Object);
 
+            // Act
             var result =await manageCategory.Create(category1);
 
+            // Assert
             Assert.NotNull(result);
             Assert.Equal(category.CategoryName, result.CategoryName);
         }
@@ -37,6 +40,7 @@ namespace BusinessLayer.Test
         [Fact]
         public async Task Update()
         {
+            // Arrange
             var mock = new Mock<IRepository<Category>>();
             Category category = new Category() { DisplayName = "Test", CategoryName = "Test" };
             CategoryDomain category1 = new CategoryDomain() { DisplayName = "Test", CategoryName = "Test" };
@@ -44,8 +48,10 @@ namespace BusinessLayer.Test
                 .ReturnsAsync(category);
             ManageCategoryService manageCategory = new ManageCategoryService(mock.Object);
 
+            // Act
             var result = await manageCategory.Update(category1);
 
+            // Assert
             Assert.NotNull(result);
             Assert.Equal(category.CategoryName, result.CategoryName);
         }

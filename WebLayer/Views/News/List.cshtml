@@ -5,13 +5,13 @@
         if (Model != null)
             foreach (var news in Model)
             {
-                <div class="col-lg-4">
-                    <h2>@news.Name</h2>
-                    <img class="img-thumbnail" src="@news.Image" alt="@news.Name" />
-                    <p>@news.Description</p>
-                    <p><a class="btn-dark" href="/News/NewsId/@news.Id">Подробнее</a> </p>
+        <div class="col-lg-4">
+            <h2>@news.Name</h2>
+            <img class="img-thumbnail" src="@news.Image" alt="@news.Name" />
+            <p>@news.Description</p>
+            <U><a href="/News/NewsId/@news.Id">Подробнее</a> </U>
 
-                </div>
+        </div>
             }
     }
 </div>

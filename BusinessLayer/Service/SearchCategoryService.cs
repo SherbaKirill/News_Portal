@@ -26,12 +26,12 @@ namespace BusinessLayer.Service
             return mapper.Map<IQueryable<Category>, List<CategoryDomain>>(await _newsCategory.ReadAll());
         }
 
-        public async Task<CategoryDomain> GetCategoryById(int? Id)
+        public async Task<CategoryDomain> GetCategoryById(int? id)
         {
-            if (Id == null)
+            if (id == null)
                 throw new Exception("id отсутствует");
 
-            var category = await _newsCategory.Read(Id.Value);
+            var category = await _newsCategory.Read(id.Value);
             if (category == null)
                 throw new Exception("id не обнаружен");
 

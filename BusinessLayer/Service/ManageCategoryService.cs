@@ -30,9 +30,9 @@ namespace BusinessLayer.Service
             return category.ToCategoryDomain(result);
         }
 
-        public void Delete(int Id)
+        public void Delete(int id)
         {
-            _allCategory.Delete(Id);
+            _allCategory.Delete(id);
         }
     }
 }

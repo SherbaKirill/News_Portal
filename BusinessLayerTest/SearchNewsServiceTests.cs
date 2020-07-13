@@ -35,13 +35,18 @@ namespace BusinessLayer.Test
         [Fact]
         public async Task GetCategoryById()
         {
+            // Arrange
             var mock = new Mock<IRepository<News>>();
             int testSessionId = 1;
-            mock.Setup(repo => repo.Read(testSessionId)).ReturnsAsync(GetTestSessions().Where(x => x.Id == testSessionId).FirstOrDefault);
+            mock.Setup(repo => repo.Read(testSessionId))
+                .ReturnsAsync(GetTestSessions().Where(x => x.Id == testSessionId).FirstOrDefault);
             var mock2 = new Mock<IRepository<Category>>();
             var searchNews = new SearchNewsService(mock.Object,mock2.Object);
 
+            // Act
             var result = await searchNews.GetNewsById(testSessionId);
+
+            // Assert
             var viewResult = Assert.IsType<NewsDomain>(result);
             Assert.Equal(1, result.Id);
             Assert.Equal("Category1", result.Category.CategoryName);
@@ -52,6 +57,7 @@ namespace BusinessLayer.Test
         [Fact]
         public async Task GetCategoryByCategory()
         {
+            // Arrange
             var mock = new Mock<IRepository<News>>();
             string category = "Category1";
             mock.Setup(repo =>repo.ReadAll()).ReturnsAsync(GetTestSessions());
@@ -59,7 +65,10 @@ namespace BusinessLayer.Test
             mock2.Setup(repo => repo.ReadAll()).ReturnsAsync(GetCategoryTestSessions());
             var searchNews = new SearchNewsService(mock.Object, mock2.Object);
 
+            // Act
             var result = await searchNews.GetNewsByCategory(category);
+
+            // Assert
             var viewResult = Assert.IsType<List<NewsDomain>>(result);
             Assert.Equal(2, result.Count());
         }

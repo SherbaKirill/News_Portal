@@ -53,11 +53,11 @@ namespace WebLayer.Controllers
 
         [Route("News/NewsId")]
         [Route("News/NewsId/{Id}")]
-        public async Task<IActionResult> NewsId(int? Id)
+        public async Task<IActionResult> NewsId(int? id)
         {
             try
             {
-                var newsDomain = await _searchNews.GetNewsById(Id);
+                var newsDomain = await _searchNews.GetNewsById(id);
                 return View(new NewsViewModel().ToNewsViewModel(newsDomain));
             }
             catch (Exception ex)
@@ -91,9 +91,9 @@ namespace WebLayer.Controllers
 
         [Authorize(Roles = "admin,moderator")]
         [HttpGet]
-        public async Task<IActionResult> UpdateNews(int Id)
+        public async Task<IActionResult> UpdateNews(int id)
         {
-            var newsDomain = await _searchNews.GetNewsById(Id);
+            var newsDomain = await _searchNews.GetNewsById(id);
             return View(new NewsViewModel().ToNewsViewModel( newsDomain));
         }
 
@@ -107,18 +107,18 @@ namespace WebLayer.Controllers
         }
 
         [Authorize(Roles = "admin,moderator")]
-        public async Task<IActionResult> DeleteNews(int Id)
+        public async Task<IActionResult> DeleteNews(int id)
         {
-            var newsDomain = await _searchNews.GetNewsById(Id);
+            var newsDomain = await _searchNews.GetNewsById(id);
             return View(new NewsViewModel().ToNewsViewModel(newsDomain));
         }
 
         [Authorize(Roles = "admin,moderator")]
         [HttpPost]
-        public IActionResult DeleteNews(bool Enable,int Id)
+        public IActionResult DeleteNews(bool Enable,int id)
         {
             if(Enable)
-            _newsService.Delete(Id);
+            _newsService.Delete(id);
 
             return RedirectToAction("Index");
         }
@@ -140,9 +140,9 @@ namespace WebLayer.Controllers
 
         [Authorize(Roles = "admin,moderator")]
         [HttpGet]
-        public async Task<IActionResult> UpdateCategory(int Id)
+        public async Task<IActionResult> UpdateCategory(int id)
         {
-            var categoryDomain = await _searchCategory.GetCategoryById(Id);
+            var categoryDomain = await _searchCategory.GetCategoryById(id);
             return View(new CategoryViewModel().ToCategoryViewModel(categoryDomain));
         }
 
@@ -156,18 +156,18 @@ namespace WebLayer.Controllers
         }
 
         [Authorize(Roles = "admin,moderator")]
-        public async Task<IActionResult> DeleteCategory(int Id)
+        public async Task<IActionResult> DeleteCategory(int id)
         {
-            var categoryDomain = await _searchCategory.GetCategoryById(Id);
+            var categoryDomain = await _searchCategory.GetCategoryById(id);
             return View(new CategoryViewModel().ToCategoryViewModel(categoryDomain));
         }
 
         [Authorize(Roles = "admin,moderator")]
         [HttpPost]
-        public IActionResult DeleteCategory(bool Enable, int Id)
+        public IActionResult DeleteCategory(bool Enable, int id)
         {
             if (Enable)
-                _newsService.Delete(Id);
+                _newsService.Delete(id);
 
             return RedirectToAction("Index");
         }
