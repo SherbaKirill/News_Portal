@@ -8,16 +8,17 @@
     @{
         foreach (var category in Model)
         {
-
+        <li>
             <a asp-controller="News" asp-action="List" asp-route-category="@category.CategoryName">@category.DisplayName</a>
             @if (User.IsInRole("admin") || User.IsInRole("moderator"))
             {
                 <div class="menu">
-                    <a asp-area="" asp-controller="News" asp-action="UpdateCategory" asp-route-Id=@category.Id>&#9999 Редактировать</a>
+                    <a  asp-area="" asp-controller="News" asp-action="UpdateCategory" asp-route-Id=@category.Id>&#9999 Редактировать</a><br />
                     <a asp-area="" asp-controller="News" asp-action="DeleteCategory" asp-route-Id=@category.Id>&#10060 Удалить</a>
                 </div>
             }
-            <br />
+        </li>
+            
 
         }
         @if (User.IsInRole("admin") || User.IsInRole("moderator"))
