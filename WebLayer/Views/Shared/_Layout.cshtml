@@ -1,0 +1,65 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - MVCNewsPortal</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-sm-1">
+            <a class="navbar" asp-area="" asp-controller="News" asp-action="Index">MVCNewsPortal</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+                <ul class="navbar-nav flex-grow-1">
+                    <li class="nav-item">
+                        @if (User.IsInRole("admin") || User.IsInRole("moderator"))
+                        {
+                            <u><a class="nav-link text-dark" asp-area="" asp-controller="User" asp-action="Index">Редактирование пользователей</a></u>
+                            <u><a class="nav-link text-dark" asp-area="" asp-controller="Roles" asp-action="Index">Список ролей</a></u>
+                        }
+                    </li>
+                </ul>
+
+            </div>
+            @await Component.InvokeAsync("User")
+        </nav>
+    </header>
+    <style>
+        .row {
+            margin-left: 15pt;
+            margin-right: 15pt;
+        }
+    </style>
+    <input id="nav-toggle" type="checkbox" hidden="">
+    <nav class="nav">
+        <label class="nav-toggle" onclick="" for="nav-toggle"></label>
+        <ul>
+            <li><a asp-area="" asp-controller="News" asp-action="Index">Все новости</a></li>
+           @await Component.InvokeAsync("CategoryList")
+        </ul>
+    </nav>
+    <div class="row">
+        
+        <main class="col-md-10 ml-sm-auto col lg-10 px-md-4" role="main">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2020 - MVCNewsPortal - <a asp-area="" asp-controller="News" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

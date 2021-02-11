@@ -1,15 +1,12 @@
 ﻿using BusinessLayer.Models;
-using DataLayer.Models;
-using System;
-using System.Collections.Generic;
-using System.Text;
+using System.Threading.Tasks;
 
 namespace BusinessLayer.Interfaces
 {
     public interface IManageNewsService
     {
-        NewsDomain Create(NewsDomain obj);
-        NewsDomain Update(NewsDomain obj);
+        Task<NewsDomain> Create(NewsDomain obj);
+        Task<NewsDomain> Update(NewsDomain obj);
         void Delete(int Id);
     }
 }
